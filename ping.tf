@@ -2,7 +2,7 @@ resource "null_resource" "ping_round_robin" {
   count = var.vm_count
   provisioner "local-exec" {
     command = <<EOF
-      vm_ip_list=($(az vm list -d --query "[].{PrivateIPs:privateIps}" -o tsv))
+      vm_ip_list=($(az vm list -d --query "[].{PublicIPs:publicIps}" -o tsv))
       index=${count.index}
       vm_count=${var.vm_count}
 
